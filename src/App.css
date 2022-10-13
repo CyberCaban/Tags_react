@@ -7,8 +7,10 @@
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  user-select: none;
 }
 
 .board {
@@ -20,6 +22,8 @@
 }
 
 .cell {
+  background-color: white;
+  border-radius: 10px;
   font-size: xx-large;
   font-weight: 800;
   width: 128px;
@@ -28,9 +32,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 4px brown inset;
+  border: 12px rgb(111, 0, 255) inset;
   box-sizing: border-box;
   cursor: pointer;
   user-select: none;
-  transition: .5s ease-in-out;
+  transition: all .4s ease-out;
+}
+
+.randomButton{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+#randomize{
+  width: 34px;
+  height: 34px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+#randomize img{
+  margin: 0;
+  padding: 0;
 }
