@@ -3,14 +3,21 @@
   padding: 0;
 }
 
-.app {
-  width: 100vw;
-  height: 100vh;
+.app,
+.randomButton,
+#randomize,
+.main,
+.setup{
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   user-select: none;
+  flex-direction: column;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
 }
 
 .board {
@@ -32,19 +39,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 12px rgb(111, 0, 255) inset;
+  border: 6px rgb(255, 0, 64) outset;
   box-sizing: border-box;
   cursor: pointer;
   user-select: none;
   transition: all .4s ease-out;
-}
-
-.randomButton{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  user-select: none;
 }
 
 #randomize{
@@ -52,13 +51,16 @@
   height: 34px;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  user-select: none;
 }
 
 #randomize img{
   margin: 0;
   padding: 0;
+}
+
+dialog{
+  top: 10%;
+  left: auto;
+  right: auto;
+  padding: 15px;
 }

@@ -84,7 +84,22 @@ function Board(props:any) {
     y: 3,
   });
 
-  function setup() {
+  function shuffle() {
+    let temp = emptyCell;
+    let tempTable = cellTable.slice();
+
+    tempTable.forEach((item, index) => {
+      if (item.x == 3 && item.y == 3) {
+        let timeX = tempTable[index].x;
+        let timeY = tempTable[index].y;
+        tempTable[index].x = temp.x;
+        tempTable[index].y = temp.y;
+        temp.x = timeX;
+        temp.y = timeY;
+        setCellTable(tempTable);
+        setEmptyCell(temp);
+      }
+    })
     setCellTable(props.randomizedCells);
   }
 
@@ -106,7 +121,7 @@ function Board(props:any) {
   function move(e: any) {
     let temp = emptyCell;
     let tempTable = cellTable.slice();
-    console.log(props.randomizedCells);
+    // console.log(props.randomizedCells);
 
     tempTable.forEach((item, index) => {
       if (item.value == e.target.dataset.n) {
@@ -128,10 +143,9 @@ function Board(props:any) {
   }
 
   return <div className="setup">
-    <button onClick={setup}>Do something</button>
       <div className="board">{cells}</div>
+      <button onClick={shuffle}>Shuffle</button>
     </div>
 }
-
 
 export default Board
