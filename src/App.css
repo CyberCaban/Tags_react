@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
@@ -7,7 +7,7 @@
 .randomButton,
 #randomize,
 .main,
-.setup{
+.setup {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,7 +29,6 @@
 }
 
 .cell {
-  background-color: white;
   border-radius: 10px;
   font-size: xx-large;
   font-weight: 800;
@@ -39,28 +38,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 6px rgb(255, 0, 64) outset;
+  border: 6px rgb(70, 70, 70) outset;
   box-sizing: border-box;
   cursor: pointer;
   user-select: none;
-  transition: all .4s ease-out;
-}
-
-#randomize{
-  width: 34px;
-  height: 34px;
-  margin: 0;
-  padding: 0;
-}
-
-#randomize img{
-  margin: 0;
-  padding: 0;
-}
-
-dialog{
-  top: 10%;
-  left: auto;
-  right: auto;
-  padding: 15px;
+  transition: all 0.4s ease-out;
 }
