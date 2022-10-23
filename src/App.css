@@ -29,6 +29,7 @@
 }
 
 .cell {
+  background-color: rgb(255, 247, 238);
   border-radius: 10px;
   font-size: xx-large;
   font-weight: 800;
@@ -38,9 +39,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 6px rgb(70, 70, 70) outset;
+  border: 6px rgb(153, 107, 70) outset;
   box-sizing: border-box;
   cursor: pointer;
   user-select: none;
   transition: all 0.4s ease-out;
+}
+
+.colors img{
+  width: 30px;
+  height: 30px;
 }

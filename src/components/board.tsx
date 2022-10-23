@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function Board(props:any) {
-  const [cellTable, setCellTable] = useState([
+  const [cellsXY, setcellsXY] = useState([
     {
       value: 1,
       x: 0,
@@ -79,12 +79,18 @@ function Board(props:any) {
     },
   ]);
 
-  const [emptyCell, setEmptyCell] = useState({
+  const [emptyCellXY, setemptyCellXY] = useState({
     x: 3,
     y: 3,
   });
 
   const [isSolving, setIsSolving] = useState(false)
+
+  const [colorScheme, setColorScheme] = useState({
+    m:getRandomInt(40),
+    g:getRandomInt(255),
+    b:getRandomInt(255)
+  })
 
   function getRandomInt(max: number) {
     return Math.floor(Math.random() * max);
@@ -168,21 +174,21 @@ function Board(props:any) {
         y: 3,
       },
     ]
-    let emptyCell = {
+    let emptyCellXY = {
       x:3,
       y:3
     }
-    setCellTable(temp)
-    setEmptyCell(emptyCell)
+    setcellsXY(temp)
+    setemptyCellXY(emptyCellXY)
     setIsSolving(false)
   }
 
   function shuffleCells() {
-    let tempTable = cellTable.slice()
+    let tempTable = cellsXY.slice()
     let pool = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
     
     tempTable.forEach((item, index)=>{
-      let tempEmpty = emptyCell
+      let tempEmpty = emptyCellXY
       let temp
       if (item.x == 3 && item.y == 3) {
         let timeX = tempTable[index].x;
@@ -191,21 +197,21 @@ function Board(props:any) {
         tempTable[index].y = tempEmpty.y;
         tempEmpty.x = timeX;
         tempEmpty.y = timeY;
-        setCellTable(tempTable);
-        setEmptyCell(tempEmpty);
+        setcellsXY(tempTable);
+        setemptyCellXY(tempEmpty);
       }
         temp = getRandomInt(pool.length)
         item.value = pool[temp]
         pool.splice(temp, 1)
     })
     
-    setCellTable(tempTable)
+    setcellsXY(tempTable)
     setIsSolving(true)
   }
 
   function didIWin() {
     let count = 0
-    let cells = cellTable.slice()
+    let cells = cellsXY.slice()
     cells.forEach((item, index) => {
       if (item.value == (item.x + 1) + (item.y * 4)) {
         count += 1
@@ -217,33 +223,35 @@ function Board(props:any) {
     }
   }
 
-  function test(prop:any) {
-    console.log(prop);
-    
+  function shuffleColors() {
+    let temp = colorScheme
+    temp.g = getRandomInt(255)
+    temp.b = getRandomInt(255)
+    console.log(colorScheme);
   }
 
-  const cells = cellTable.map((items, index) => (
+  function test(prop:any) {
+    console.log(prop);
+  }
+
+  const cells = cellsXY.map((items, index) => (
     <div
       className="cell"
       key={index}
       data-x={items.x + 1}
       data-y={items.y + 1}
       data-n={items.value}
-      style={{ transform: `translate(${items.x * 128}px, ${items.y * 128}px)` }}
+      style={{ transform: `translate(${items.x * 128}px, ${items.y * 128}px)`, border: `10px rgb(${(items.x+items.y) * 58}, ${colorScheme.g}, ${colorScheme.b}) outset` }}
       onClick={(e) => move(e)}
     >
-      <div 
-        className="cellIn"
-        onClick={(e)=>test(e)}
-        >
-        {items.value}
-      </div>
+      {items.value}
     </div>
   ));
 
+
   function move(e: any) {
-    let temp = emptyCell;
-    let tempTable = cellTable.slice();
+    let temp = emptyCellXY;
+    let tempTable = cellsXY.slice();
 
     tempTable.forEach((item, index) => {
       if (item.value == e.target.dataset.n) {
@@ -264,8 +272,8 @@ function Board(props:any) {
       didIWin()
     }
 
-    setCellTable(tempTable);
-    setEmptyCell(temp);
+    setcellsXY(tempTable);
+    setemptyCellXY(temp);
   }
 
   return <div className="setup">
@@ -274,6 +282,7 @@ function Board(props:any) {
       <img src="https://img.icons8.com/ios-glyphs/30/000000/refresh--v1.png"/>
     </button>
     <button onClick={sortOut}>Sort</button>
+    {/* <button className="colors" onClick={shuffleColors}><img src="https://img.icons8.com/color/48/000000/rgb-circle-2--v1.png"/></button> */}
   </div>
 }
 
