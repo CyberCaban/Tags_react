@@ -1,4 +1,5 @@
 import Board from "./board";
+import Timer from "./timer";
 
 function Main() {
 
@@ -6,6 +7,7 @@ function Main() {
     <div className="main" >
       <h1>Tags</h1>
       <Board/>
+      {/* <Timer/> */}
     </div>
   );
 }

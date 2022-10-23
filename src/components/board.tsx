@@ -215,6 +215,8 @@ function Board(props:any) {
     cells.forEach((item, index) => {
       if (item.value == (item.x + 1) + (item.y * 4)) {
         count += 1
+        console.log(item.value);
+        
       }
     })
     if (count == 15) {
@@ -228,6 +230,7 @@ function Board(props:any) {
     temp.g = getRandomInt(255)
     temp.b = getRandomInt(255)
     console.log(colorScheme);
+    setColorScheme(temp)
   }
 
   function test(prop:any) {
@@ -278,11 +281,13 @@ function Board(props:any) {
 
   return <div className="setup">
     <div className="board">{cells}</div>
-    <button onClick={shuffleCells}>
-      <img src="https://img.icons8.com/ios-glyphs/30/000000/refresh--v1.png"/>
-    </button>
-    <button onClick={sortOut}>Sort</button>
-    {/* <button className="colors" onClick={shuffleColors}><img src="https://img.icons8.com/color/48/000000/rgb-circle-2--v1.png"/></button> */}
+    <div className="control_panel">
+      <button className="button-30 __shuffle"  onClick={shuffleCells}>
+        <img src="https://img.icons8.com/ios-glyphs/30/000000/refresh--v1.png"/>
+      </button>
+      <button className="button-30" onClick={sortOut}>Sort</button>
+      <button className="button-30 __shuffle_colors" onClick={shuffleColors}><img src="https://img.icons8.com/color/48/000000/rgb-circle-2--v1.png"/></button>
+    </div>
   </div>
 }
 
